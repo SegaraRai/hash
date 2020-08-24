@@ -28,7 +28,7 @@ if (isProd) {
       ...userOptions,
       mangle: {
         properties: {
-          regex: /\$\$q$|^__cssModules$/i,
+          regex: /\$\$[qQ]$|^__cssModules$|^\$style$/,
         },
       },
     };
