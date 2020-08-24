@@ -1,6 +1,8 @@
 <script lang="ts">
-import { onMounted, onUnmounted, ref, watchEffect, watch } from 'vue';
-import { DigestAlgorithm, calcHash, isSupported } from './lib/hash';
+/* eslint-disable vue/no-multiple-template-root */
+
+import { ref, watch } from 'vue';
+import { calcHash, isSupported } from './lib/hash';
 import { usePreferenceStore } from './stores/preference';
 
 export default {
@@ -16,13 +18,17 @@ export default {
     const dest = ref<string>('');
 
     if (supported) {
-      watch([src, algorithm, upperCase], async () => {
-        dest.value = '';
-        const hash = (await calcHash(src.value, algorithm.value)) || '';
-        dest.value = upperCase.value ? hash.toUpperCase() : hash;
-      }, {
-        immediate: true,
-      });
+      watch(
+        [src, algorithm, upperCase],
+        async () => {
+          dest.value = '';
+          const hash = (await calcHash(src.value, algorithm.value)) || '';
+          dest.value = upperCase.value ? hash.toUpperCase() : hash;
+        },
+        {
+          immediate: true,
+        }
+      );
     }
 
     return {
@@ -39,24 +45,39 @@ export default {
 
 <template>
   <header class="fixed w-full">
-    <nav class="flex items-center justify-between px-6 py-2" :class="$style.nav$$q">
-      <div class="flex items-center flex-shrink-0 mr-6 text-white cursor-default select-none">
-        <span class="font-semibold text-xl tracking-tight">
-          Hash
-        </span>
+    <nav
+      class="flex items-center justify-between px-6 py-2"
+      :class="$style.nav$$q"
+    >
+      <div
+        class="flex items-center flex-shrink-0 mr-6 text-white cursor-default select-none"
+      >
+        <span class="font-semibold text-xl tracking-tight"> Hash </span>
       </div>
       <div class="flex-grow"></div>
       <label class="block">
         <div class="inline-block mr-2 font-medium">テーマ</div>
         <div class="inline-block relative">
-          <select v-model="theme$$q" :class="$style.input$$q" class="pr-8 leading-none">
+          <select
+            v-model="theme$$q"
+            :class="$style.input$$q"
+            class="pr-8 leading-none"
+          >
             <option value="auto">システム</option>
             <option value="light">ライト</option>
             <option value="dark">ダーク</option>
           </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+          >
+            <svg
+              class="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              />
             </svg>
           </div>
         </div>
@@ -68,40 +89,60 @@ export default {
       <div class="lg:flex-1 lg:mr-2">
         <template v-if="supported$$q">
           <label class="block">
-            <div class="font-medium py-2">
-              元の文字列
-            </div>
-            <textarea v-model="src$$q" :class="$style.input$$q" class="h-32"></textarea>
+            <div class="font-medium py-2">元の文字列</div>
+            <textarea
+              v-model="src$$q"
+              :class="$style.input$$q"
+              class="h-32"
+            ></textarea>
           </label>
           <div class="flex items-end mt-2">
             <label class="block flex-grow">
-              <div class="font-medium py-2">
-                ハッシュアルゴリズム
-              </div>
+              <div class="font-medium py-2">ハッシュアルゴリズム</div>
               <div class="relative">
-                <select v-model="algorithm$$q" :class="$style.input$$q" class="pr-8">
+                <select
+                  v-model="algorithm$$q"
+                  :class="$style.input$$q"
+                  class="pr-8"
+                >
                   <option>SHA-1</option>
                   <option>SHA-256</option>
                   <option>SHA-384</option>
                   <option>SHA-512</option>
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                >
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
                   </svg>
                 </div>
               </div>
             </label>
             <label class="block flex-grow ml-8 pb-3 font-medium">
-              <input v-model="upperCase$$q" type="checkbox" class="mr-2 leading-tight">
+              <input
+                v-model="upperCase$$q"
+                type="checkbox"
+                class="mr-2 leading-tight"
+              />
               大文字にする
             </label>
           </div>
           <label class="block mt-2">
-            <div class="font-medium py-2">
-              文字列のハッシュ（UTF-8）
-            </div>
-            <input v-model="dest$$q" type="text" :class="$style.input$$q" class="select-all" readonly>
+            <div class="font-medium py-2">文字列のハッシュ（UTF-8）</div>
+            <input
+              v-model="dest$$q"
+              type="text"
+              :class="$style.input$$q"
+              class="select-all"
+              readonly
+            />
           </label>
           <div class="mt-2">
             <div class="py-2">
@@ -111,7 +152,7 @@ export default {
         </template>
         <template v-else>
           <div class="mt-2 text-red-600">
-            お使いのブラウザはハッシュ値の計算に対応しておりません<br>
+            お使いのブラウザはハッシュ値の計算に対応しておりません<br />
             最新版のGoogle ChromeまたはMozilla Firefoxをお使いください
           </div>
         </template>

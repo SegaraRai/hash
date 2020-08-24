@@ -30,7 +30,9 @@ try {
     throw 0;
   }
   Object.assign(preference, savedPreference);
-} catch (_error) {}
+} catch (_error) {
+  // do nothing
+}
 
 export function usePreferenceStore(): ToRefs<Preference> {
   return toRefs(preference);
