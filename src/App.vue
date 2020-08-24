@@ -123,7 +123,7 @@ export default {
               <td :class="$style.td$$q">32</td>
               <td :class="$style.td$$q">24 (22)</td>
             </tr>
-            <tr :class="$style.evenTd$$q">
+            <tr :class="$style.evenTr$$q">
               <td :class="$style.td$$q">SHA-1</td>
               <td :class="$style.td$$q">160</td>
               <td :class="$style.td$$q">20</td>
@@ -137,7 +137,7 @@ export default {
               <td :class="$style.td$$q">64</td>
               <td :class="$style.td$$q">44 (41)</td>
             </tr>
-            <tr :class="$style.evenTd$$q">
+            <tr :class="$style.evenTr$$q">
               <td :class="$style.td$$q">SHA-384</td>
               <td :class="$style.td$$q">384</td>
               <td :class="$style.td$$q">48</td>
@@ -209,16 +209,22 @@ export default {
 }
 
 .td {
+  @apply border-gray-300;
+
   @apply border;
   @apply px-4;
   @apply py-2;
 }
 
-.even-td {
+:global(.theme--dark) .td {
+  @apply border-gray-600;
+}
+
+.even-tr {
   @apply bg-gray-200;
 }
 
-:global(.theme--dark) .even-td {
+:global(.theme--dark) .even-tr {
   @apply bg-gray-800;
 }
 </style>
