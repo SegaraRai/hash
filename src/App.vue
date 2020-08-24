@@ -38,9 +38,9 @@ export default {
 </script>
 
 <template>
-  <header>
+  <header class="fixed w-full">
     <nav class="flex items-center justify-between px-6 py-2" :class="$style.nav$$q">
-      <div class="flex items-center flex-shrink-0 mr-6 text-white">
+      <div class="flex items-center flex-shrink-0 mr-6 text-white cursor-default select-none">
         <span class="font-semibold text-xl tracking-tight">Hash</span>
       </div>
       <div class="flex-grow"></div>
@@ -59,17 +59,17 @@ export default {
       </label>
     </nav>
   </header>
-  <main class="container mx-auto">
+  <main class="container mx-auto pt-12">
     <div class="mx-auto lg:flex lg:flex-row">
       <div class="lg:flex-1 lg:mr-2">
         <template v-if="supported$$q">
-          <label class="block mt-2">
-            <div class="font-medium">元の文字列</div>
+          <label class="block">
+            <div class="font-medium py-2">元の文字列</div>
             <textarea v-model="src$$q" :class="$style.input$$q" class="h-32"></textarea>
           </label>
-          <div class="flex items-end mt-4">
+          <div class="flex items-end mt-2">
             <label class="block flex-grow">
-              <div class="font-medium">ハッシュアルゴリズム</div>
+              <div class="font-medium py-2">ハッシュアルゴリズム</div>
               <div class="relative">
                 <select v-model="algorithm$$q" :class="$style.input$$q" class="pr-8">
                   <option>SHA-1</option>
@@ -87,12 +87,12 @@ export default {
               大文字にする
             </label>
           </div>
-          <label class="block mt-4">
-            <div class="font-medium">文字列のハッシュ（UTF-8）</div>
-            <input v-model="dest$$q" type="text" :class="$style.input$$q" readonly>
+          <label class="block mt-2">
+            <div class="font-medium py-2">文字列のハッシュ（UTF-8）</div>
+            <input v-model="dest$$q" type="text" :class="$style.input$$q" class="select-all" readonly>
           </label>
-          <div class="mt-4">
-            <div>ハッシュ値の計算は、サーバーを介さず、すべてブラウザ内で行われます</div>
+          <div class="mt-2">
+            <div class="py-2">ハッシュ値の計算は、サーバーを介さず、すべてブラウザ内で行われます</div>
           </div>
         </template>
         <template v-else>
