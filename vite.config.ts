@@ -1,4 +1,4 @@
-import type { TextNode } from '@vue/compiler-core';
+import type { AttributeNode, ElementNode, TextNode } from '@vue/compiler-core';
 import type {
   SFCAsyncStyleCompileOptions,
   SFCStyleCompileResults,
@@ -111,6 +111,31 @@ export default is<UserConfig>({
       (node): void => {
         // NOTE: `const enum` cannot be used in vite.config.ts
         switch (node.type) {
+          // NodeTypes.ELEMENT
+          case 1: {
+            const { props } = node as ElementNode;
+            for (const prop of props) {
+              switch (prop.type) {
+                // NodeTypes.ATTRIBUTE
+                case 6: {
+                  switch ((prop as AttributeNode).name) {
+                    case 'class':
+                      // sort classes
+                      (prop as AttributeNode).value.content = (prop as AttributeNode).value.content
+                        .trim()
+                        .split(/\s+/)
+                        .sort()
+                        .join(' ');
+                      break;
+                  }
+                  break;
+                }
+              }
+            }
+            break;
+          }
+
+          // NodeTypes.TEXT
           case 2:
             (node as TextNode).content = (node as TextNode).content.trim();
             break;
