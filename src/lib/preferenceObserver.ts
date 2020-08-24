@@ -1,4 +1,4 @@
-import { watch, reactive } from 'vue';
+import { reactive, watch } from 'vue';
 import { usePreferenceStore } from '../stores/preference';
 import { preferenceKey } from './config';
 
