@@ -8,7 +8,7 @@ const reactivePreferenceStore = reactive(usePreferenceStore());
 watch(
   reactivePreferenceStore,
   () => {
-    localStorage?.setItem(
+    window.localStorage?.setItem(
       preferenceKey,
       JSON.stringify(reactivePreferenceStore)
     );
