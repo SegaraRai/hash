@@ -46,7 +46,7 @@ if (typeof window.matchMedia === 'function') {
 
     if (import.meta.hot) {
       import.meta.hot.dispose(() => {
-        anyMediaQuery.removeEventListener('change', callback);
+        mediaQuery.removeEventListener('change', callback);
       });
     }
   }
