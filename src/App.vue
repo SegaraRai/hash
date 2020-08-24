@@ -41,7 +41,9 @@ export default {
   <header class="fixed w-full">
     <nav class="flex items-center justify-between px-6 py-2" :class="$style.nav$$q">
       <div class="flex items-center flex-shrink-0 mr-6 text-white cursor-default select-none">
-        <span class="font-semibold text-xl tracking-tight">Hash</span>
+        <span class="font-semibold text-xl tracking-tight">
+          Hash
+        </span>
       </div>
       <div class="flex-grow"></div>
       <label class="block">
@@ -53,7 +55,9 @@ export default {
             <option value="dark">ダーク</option>
           </select>
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+            </svg>
           </div>
         </div>
       </label>
@@ -64,12 +68,16 @@ export default {
       <div class="lg:flex-1 lg:mr-2">
         <template v-if="supported$$q">
           <label class="block">
-            <div class="font-medium py-2">元の文字列</div>
+            <div class="font-medium py-2">
+              元の文字列
+            </div>
             <textarea v-model="src$$q" :class="$style.input$$q" class="h-32"></textarea>
           </label>
           <div class="flex items-end mt-2">
             <label class="block flex-grow">
-              <div class="font-medium py-2">ハッシュアルゴリズム</div>
+              <div class="font-medium py-2">
+                ハッシュアルゴリズム
+              </div>
               <div class="relative">
                 <select v-model="algorithm$$q" :class="$style.input$$q" class="pr-8">
                   <option>SHA-1</option>
@@ -78,7 +86,9 @@ export default {
                   <option>SHA-512</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
                 </div>
               </div>
             </label>
@@ -88,11 +98,15 @@ export default {
             </label>
           </div>
           <label class="block mt-2">
-            <div class="font-medium py-2">文字列のハッシュ（UTF-8）</div>
+            <div class="font-medium py-2">
+              文字列のハッシュ（UTF-8）
+            </div>
             <input v-model="dest$$q" type="text" :class="$style.input$$q" class="select-all" readonly>
           </label>
           <div class="mt-2">
-            <div class="py-2">ハッシュ値の計算は、サーバーを介さず、すべてブラウザ内で行われます</div>
+            <div class="py-2">
+              ハッシュ値の計算は、サーバーを介さず、すべてブラウザ内で行われます
+            </div>
           </div>
         </template>
         <template v-else>
@@ -111,7 +125,8 @@ export default {
               <th :class="$style.th$$q">バイト長</th>
               <th :class="$style.th$$q">HEX長</th>
               <th :class="$style.th$$q">
-                Base64長<span class="text-red-600 ml-1">*</span>
+                Base64長
+                <span class="text-red-600 ml-1">*</span>
               </th>
             </tr>
           </thead>

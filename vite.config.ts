@@ -1,3 +1,4 @@
+import type { TextNode } from '@vue/compiler-core';
 import type {
   SFCAsyncStyleCompileOptions,
   SFCStyleCompileResults,
@@ -6,6 +7,7 @@ import type {
 import camelCase from 'lodash.camelcase';
 import type { Plugin } from 'rollup';
 import type { Options, terser } from 'rollup-plugin-terser';
+import type { UserConfig } from 'vite';
 
 // https://github.com/vitejs/vite/issues/512
 const isProd = process.env.NODE_ENV === 'production';
@@ -99,4 +101,21 @@ if (isProd) {
   };
 }
 
-export default {};
+function is<T>(value: T) {
+  return value;
+}
+
+export default is<UserConfig>({
+  vueCompilerOptions: {
+    nodeTransforms: [
+      (node): void => {
+        // NOTE: `const enum` cannot be used in vite.config.ts
+        switch (node.type) {
+          case 2:
+            (node as TextNode).content = (node as TextNode).content.trim();
+            break;
+        }
+      },
+    ],
+  },
+});
