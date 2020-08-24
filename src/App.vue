@@ -153,7 +153,7 @@ export default {
             </tr>
           </tbody>
         </table>
-        <div class="mt-1">
+        <div class="mt-2">
           <span class="text-red-600 mr-1">*</span>
           括弧内はパディング（<code>=</code>）を含めない長さ
         </div>
