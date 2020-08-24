@@ -358,6 +358,13 @@
     "@vue/compiler-dom" "3.0.0-rc.7"
     "@vue/shared" "3.0.0-rc.7"
 
+"@vue/eslint-config-typescript@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@vue/eslint-config-typescript/-/eslint-config-typescript-5.0.2.tgz#c2f3328e70d55d10aeb826f209405397960548c7"
+  integrity sha512-GEZOHKOnelgQf5npA+6VNuhJZu9xEJaics3SYUyRjaSay+2SCpEINHhEpt6fXoNy/aIFt8CkDlt9CaEb+QPIcg==
+  dependencies:
+    vue-eslint-parser "^7.0.0"
+
 "@vue/reactivity@3.0.0-rc.7":
   version "3.0.0-rc.7"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.0.0-rc.7.tgz#fd5fda961c57a8065c6408170e06808a39f801a2"
@@ -2801,7 +2808,7 @@ vite@^1.0.0-rc.4:
     vue "^3.0.0-rc.5"
     ws "^7.2.3"
 
-vue-eslint-parser@^7.1.0:
+vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.1.0.tgz#9cdbcc823e656b087507a1911732b867ac101e83"
   integrity sha512-Kr21uPfthDc63nDl27AGQEhtt9VrZ9nkYk/NTftJ2ws9XiJwzJJCnCr3AITQ2jpRMA0XPGDECxYH8E027qMK9Q==
